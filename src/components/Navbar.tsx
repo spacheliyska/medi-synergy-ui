@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Navbar.css";
+import { CiLogout } from "react-icons/ci";
 
 const Navbar = () => {
   return (
@@ -13,6 +14,9 @@ const Navbar = () => {
         <ul className="nav-links">
           <a href="/my-medications">My medications</a>
           <a href="/profile">Profile</a>
+          <a href="/login">
+            <CiLogout />
+          </a>
         </ul>
       </div>
     </nav>
