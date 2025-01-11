@@ -27,3 +27,18 @@
     width: 60%;
     height: 60%;
 }
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.remove-btn {
+    background-color: #ff3333;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin: 0.7rem;
+}
