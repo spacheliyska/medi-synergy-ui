@@ -14,8 +14,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-container">
         <ul className="nav-links">
-          <a href="/my-medications">My medications</a>
-          <a href="/profile">Profile</a>
+          <a href="/my-medications">Моите лекарства</a>
+          <a href="/profile">Профил</a>
           <a href="/login">
             <CiLogout />
           </a>
