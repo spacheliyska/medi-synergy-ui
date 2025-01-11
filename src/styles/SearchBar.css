@@ -1,0 +1,32 @@
+.round {
+    border-radius: 15px;
+    border: 1px rgb(3, 191, 165) solid;
+    padding: 5px 5px 5px 25px;
+    z-index: 5;
+    height: 2rem;
+    width: 120%;
+    font-size: 1rem;
+}
+
+.corner {
+    height: 20px;
+    width: 27px;
+    z-index: 10;
+    border-radius: 10px;
+    border: none;
+    left: 1.8rem;
+    top: 0.4rem;
+    position: relative;
+    margin-right: 0.2rem;
+    background-color: rgb(3, 191, 165, 0.2);
+}
+
+.search {
+    width: 490px;
+    height: 30px;
+}
+
+.search-items {
+    display: flex;
+    justify-content: space-between;
+}
