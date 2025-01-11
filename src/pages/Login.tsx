@@ -25,7 +25,7 @@ const Login = () => {
           </div>
           <div className="register-link-wrapper">
             <span className="register-link">Нямате профил при нас?</span>
-            <a href="/register" className="register-link">
+            <a href="/" className="register-link">
               Регистрация
             </a>
           </div>

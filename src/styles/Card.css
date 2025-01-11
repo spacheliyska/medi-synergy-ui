@@ -1,0 +1,29 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 20px;
+}
+  
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(3, 191, 165, 0.5);
+}
+  
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    flex-direction: column;
+    padding: 2rem 1rem;
+}
+
+.avatar {
+    width: 60%;
+    height: 60%;
+}
