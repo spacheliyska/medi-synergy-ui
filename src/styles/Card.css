@@ -34,20 +34,19 @@
     width: 100%;
 }
 
-.remove-btn {
-    background-color: #ff3333;
+button {
     border: none;
     color: white;
     padding: 0.5rem;
     font-size: 1rem;
     margin: 0.7rem;
+    border-radius: 50%;
+}
+
+.remove-btn {
+    background-color: #ff3333;
 }
 
 .add-btn {
     background-color: #03bf9b;
-    border: none;
-    color: white;
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin: 0.7rem;
 }
