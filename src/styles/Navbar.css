@@ -7,47 +7,38 @@
     color: #fff;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
+    height: 1.8rem;
   }
-  
-  .navbar-left .logo {
-    font-size: 1.5rem;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .navbar-right .nav-links {
-    list-style-type: none;
+
+  .navbar-container {
     display: flex;
-    justify-content: right;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .app-logo {
+    height: 80px;
+    width: 80px;
+    margin-top: 1rem;
+  }
+
+   .logo {
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    margin-left: -1rem ;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
-    margin: 0;
-    padding: 0;
   }
-  
-  .navbar-right .nav-links {
-    margin-right: 1rem;
-  }
-  
-  .navbar-right .nav-links a {
+
+  .nav-links a {
+    font-size: 1rem;
     color: #fff;
     text-decoration: none;
-  }
-  
-  .navbar-right .cart-icon,
-  .navbar-right .user-icon {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 1rem;
-    position: relative;
-  }
-  
-  .navbar-right .cart-count {
-    background-color: #f44336;
-    color: #fff;
-    border-radius: 50%;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.8rem;
-    position: absolute;
-    top: -0.5rem;
-    right: -0.5rem;
   }
