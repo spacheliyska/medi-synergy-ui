@@ -42,3 +42,12 @@
     font-size: 1rem;
     margin: 0.7rem;
 }
+
+.add-btn {
+    background-color: #03bf9b;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin: 0.7rem;
+}
