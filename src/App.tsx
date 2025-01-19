@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import MyMedications from "./pages/MyMedications";
+import Compare from "./pages/Compare";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <Route path="/" exact>
           <Home />
         </Route>
-
+        <Route path="/compare" exact>
+          <Compare />
+        </Route>
         <Route path="/login" exact>
           <Login />
         </Route>

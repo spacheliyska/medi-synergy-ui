@@ -4,18 +4,36 @@ import "../styles/Card.css";
 interface CardProps {
   avatar: string;
   title: string;
-  description: string;
+  composition: string;
+  sideEffects: string[];
   btnText: string;
 }
 
-const Card: React.FC<CardProps> = ({ avatar, title, description, btnText }) => (
+const Card: React.FC<CardProps> = ({
+  avatar,
+  title,
+  composition,
+  btnText,
+  sideEffects,
+}) => (
   <div className="card">
     <img src={avatar} alt="Avatar" className="avatar" />
     <div className="container">
       <h4>
         <b>{title}</b>
       </h4>
-      <p>{description}</p>
+      <div className="section-wrapper">
+        <span className="section-header">Състав:</span>
+        <p className="chemical-composition">{composition}</p>
+      </div>
+      <div className="section-wrapper">
+        <span className="section-header">Странични ефекти:</span>
+        <ul className="side-effect-list">
+          {sideEffects.map((sideEffect) => (
+            <li>{sideEffect}</li>
+          ))}
+        </ul>
+      </div>
     </div>
     <div className="card-footer">
       <button

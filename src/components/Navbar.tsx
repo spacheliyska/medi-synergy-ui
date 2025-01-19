@@ -14,6 +14,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-container">
         <ul className="nav-links">
+          <a href="/compare">Сравни лекарства</a>
           <a href="/my-medications">Моите лекарства</a>
           <a href="/profile">Профил</a>
           <a href="/login">

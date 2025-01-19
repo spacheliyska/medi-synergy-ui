@@ -1,0 +1,46 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+}
+.medication {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 45%;
+}
+.medication h2 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+.medication ul {
+    list-style: none;
+    padding: 0;
+}
+.medication li {
+    margin-bottom: 8px;
+}
+.medication .section-title {
+    font-weight: bold;
+}
+.compare-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.compare-btn:hover {
+    background-color: #0056b3;
+}
