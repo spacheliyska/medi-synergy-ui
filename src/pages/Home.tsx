@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import Card from "../components/Card";
 import paracetamol from "../assets/paracetamol.jpg";
-import { getApi } from "../hooks/getApi";
+import { getAllApi } from "../hooks/getAllApi";
 import Medicine from "../models/Medicine";
 
 const Home = () => {
-  const getApiCall = getApi();
+  const getApiCall = getAllApi();
   const [data, setData] = useState<Medicine[]>([]);
 
   useEffect(() => {

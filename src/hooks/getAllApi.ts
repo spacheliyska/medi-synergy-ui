@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getApi = () => {
+export const getAllApi = () => {
   const url = "http://localhost:8000";
 
   const performRequest = async () => {

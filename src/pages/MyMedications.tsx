@@ -3,11 +3,11 @@ import Card from "../components/Card";
 import "../styles/MyMedications.css";
 import paracetamol from "../assets/paracetamol.jpg";
 import SearchBar from "../components/SearchBar";
-import { getApi } from "../hooks/getApi";
+import { getAllApi } from "../hooks/getAllApi";
 import Medicine from "../models/Medicine";
 
 const MyMedications = () => {
-  const getApiCall = getApi();
+  const getApiCall = getAllApi();
   const [data, setData] = useState<Medicine[]>([]);
 
   useEffect(() => {
