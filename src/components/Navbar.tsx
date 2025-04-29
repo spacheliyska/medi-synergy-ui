@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/Navbar.css";
-import { CiLogout } from "react-icons/ci";
 import medisynergy from "../assets/medicalsynergy.png";
 
 const Navbar = () => {
@@ -17,9 +16,6 @@ const Navbar = () => {
           <a href="/compare">Сравни лекарства</a>
           <a href="/my-medications">Моите лекарства</a>
           <a href="/profile">Профил</a>
-          <a href="/login">
-            <CiLogout />
-          </a>
         </ul>
       </div>
     </nav>
