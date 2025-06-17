@@ -20,9 +20,16 @@ const MyMedications = () => {
     getUseCases();
   }, []);
 
+  const [searchValue, setSearchValue] = useState<string>("");
+
   return (
     <div className="medication-container">
-      <SearchBar></SearchBar>
+      <SearchBar
+        value={searchValue}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setSearchValue(e.target.value)
+        }
+      />
       <div className="card-container">
         {data && data.length > 0
           ? data.map((medicine: Medicine) => (

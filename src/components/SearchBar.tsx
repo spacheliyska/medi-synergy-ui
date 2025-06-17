@@ -1,22 +1,19 @@
 import React from "react";
 import "../styles/SearchBar.css";
 
-const SearchBar = () => {
-  return (
-    <form id="search-form">
-      <div className="search">
-        <div className="search-items">
-          <input type="submit" className="corner" value="" />
-          <input
-            type="text"
-            name="search"
-            className="round"
-            placeholder="Търси лекарство"
-          />
-        </div>
-      </div>
-    </form>
-  );
-};
+interface SearchBarProps {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => (
+  <input
+    type="text"
+    placeholder="Търси лекарства..."
+    value={value}
+    onChange={onChange}
+    className="search-bar"
+  />
+);
 
 export default SearchBar;
