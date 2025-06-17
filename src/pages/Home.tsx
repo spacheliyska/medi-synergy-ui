@@ -5,6 +5,7 @@ import paracetamol from "../assets/paracetamol.jpg";
 import { getAllApi } from "../hooks/getAllApi";
 import Medicine from "../models/Medicine";
 import "../styles/Home.css";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   const [data, setData] = useState<Medicine[]>([]);
@@ -35,28 +36,31 @@ const Home = () => {
   });
 
   return (
-    <div className="medication-container">
-      <SearchBar
-        value={query}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setQuery(e.target.value)
-        }
-      />
-      <div className="card-container">
-        {filteredData.length > 0
-          ? filteredData.map((medicine: Medicine, idx: number) => (
-              <Card
-                key={medicine.title + idx}
-                avatar={paracetamol}
-                title={medicine.title}
-                composition={medicine.composition}
-                btnText="Добави"
-                sideEffects={medicine.sideEffects}
-              />
-            ))
-          : "Няма намерени лекарства"}
+    <>
+      <Navbar />
+      <div className="medication-container">
+        <SearchBar
+          value={query}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setQuery(e.target.value)
+          }
+        />
+        <div className="card-container">
+          {filteredData.length > 0
+            ? filteredData.map((medicine: Medicine, idx: number) => (
+                <Card
+                  key={medicine.title + idx}
+                  avatar={paracetamol}
+                  title={medicine.title}
+                  composition={medicine.composition}
+                  btnText="Добави"
+                  sideEffects={medicine.sideEffects}
+                />
+              ))
+            : "Няма намерени лекарства"}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
