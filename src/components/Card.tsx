@@ -7,6 +7,8 @@ interface CardProps {
   composition: string;
   sideEffects: string[];
   btnText: string;
+  onRemove?: () => void;
+  onClick?: () => void; // Add this prop
 }
 
 const Card: React.FC<CardProps> = ({
@@ -15,6 +17,8 @@ const Card: React.FC<CardProps> = ({
   composition,
   btnText,
   sideEffects,
+  onRemove,
+  onClick,
 }) => (
   <div className="card">
     <img src={avatar} alt="Avatar" className="avatar" />
@@ -38,7 +42,11 @@ const Card: React.FC<CardProps> = ({
     <div className="card-footer">
       <button
         className={btnText === "Премахни" ? "remove-btn" : "add-btn"}
-        onClick={() => alert("Learn More")}
+        onClick={
+          btnText === "Премахни"
+            ? onRemove
+            : onClick // Use onClick for "Добави"
+        }
       >
         {btnText}
       </button>

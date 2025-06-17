@@ -11,6 +11,7 @@ const Home = () => {
   const [data, setData] = useState<Medicine[]>([]);
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState(query);
+  const [myMedications, setMyMedications] = useState<Medicine[]>([]);
 
   useEffect(() => {
     const getApiCall = getAllApi();
@@ -35,6 +36,16 @@ const Home = () => {
     return medicine.title.toLowerCase().includes(search);
   });
 
+  // Add medicine to myMedications if not already present
+  const handleAdd = (medicine: Medicine) => {
+    setMyMedications((prev) => {
+      if (prev.some((m) => m.title === medicine.title)) {
+        return prev; // Already added
+      }
+      return [...prev, medicine];
+    });
+  };
+
   return (
     <>
       <Navbar />
@@ -55,9 +66,20 @@ const Home = () => {
                   composition={medicine.composition}
                   btnText="Добави"
                   sideEffects={medicine.sideEffects}
+                  onRemove={undefined}
+                  onClick={() => handleAdd(medicine)}
                 />
               ))
             : "Няма намерени лекарства"}
+        </div>
+        {/* Example: Show my medications below */}
+        <div className="my-medications-list">
+          <h3>Моите лекарства</h3>
+          <ul>
+            {myMedications.map((med, idx) => (
+              <li key={med.title + idx}>{med.title}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </>

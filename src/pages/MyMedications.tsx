@@ -9,18 +9,24 @@ import Medicine from "../models/Medicine";
 const MyMedications = () => {
   const getApiCall = getAllApi();
   const [data, setData] = useState<Medicine[]>([]);
+  const [medications, setMedications] = useState<Medicine[]>([]);
 
   useEffect(() => {
     async function getUseCases() {
       await getApiCall.performRequest().then((response) => {
         console.log(response);
         setData(response.data);
+        setMedications(response.data); // <-- Add this line
       });
     }
     getUseCases();
   }, []);
 
   const [searchValue, setSearchValue] = useState<string>("");
+
+  const handleRemove = (title: string) => {
+    setMedications((prev) => prev.filter((m) => m.title !== title));
+  };
 
   return (
     <div className="medication-container">
@@ -31,14 +37,15 @@ const MyMedications = () => {
         }
       />
       <div className="card-container">
-        {data && data.length > 0
-          ? data.map((medicine: Medicine) => (
+        {medications && medications.length > 0
+          ? medications.map((medicine: Medicine) => (
               <Card
                 avatar={paracetamol}
                 title={medicine.title}
                 composition={medicine.composition}
                 btnText="Премахни"
                 sideEffects={medicine.sideEffects}
+                onRemove={() => handleRemove(medicine.title)}
               />
             ))
           : ""}

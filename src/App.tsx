@@ -4,6 +4,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/Login";
 import MyMedications from "./pages/MyMedications";
 import Home from "./pages/Home";
+import Compare from "./pages/Compare";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/my-medications" element={<MyMedications />} />
+          <Route path="/compare" element={<Compare />} />
         </Routes>
       </AuthProvider>
     </Router>
