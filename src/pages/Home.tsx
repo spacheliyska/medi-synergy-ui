@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import paracetamol from "../assets/paracetamol.jpg";
 import { getAllApi } from "../hooks/getAllApi";
 import Medicine from "../models/Medicine";
+import "../styles/Home.css";
 
 const Home = () => {
   const getApiCall = getAllApi();
@@ -12,6 +13,7 @@ const Home = () => {
   useEffect(() => {
     async function getUseCases() {
       await getApiCall.performRequest().then((response) => {
+        console.log(response);
         setData(response.data);
       });
     }

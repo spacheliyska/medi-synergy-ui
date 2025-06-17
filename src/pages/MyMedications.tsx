@@ -13,6 +13,7 @@ const MyMedications = () => {
   useEffect(() => {
     async function getUseCases() {
       await getApiCall.performRequest().then((response) => {
+        console.log(response);
         setData(response.data);
       });
     }
