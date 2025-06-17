@@ -44,9 +44,9 @@ const Home = () => {
       />
       <div className="card-container">
         {filteredData.length > 0
-          ? filteredData.map((medicine: Medicine) => (
+          ? filteredData.map((medicine: Medicine, idx: number) => (
               <Card
-                key={medicine.title}
+                key={medicine.title + idx}
                 avatar={paracetamol}
                 title={medicine.title}
                 composition={medicine.composition}
