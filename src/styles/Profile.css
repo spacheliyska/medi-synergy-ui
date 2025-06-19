@@ -1,0 +1,91 @@
+.profile-container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(3,191,165,0.09);
+  padding: 32px 24px 24px 24px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.profile-title {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #03bfa5;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.profile-info {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 18px 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(3,191,165,0.04);
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.profile-label {
+  color: #2b3a55;
+  font-weight: 500;
+}
+
+.profile-value {
+  color: #03bfa5;
+  font-weight: 600;
+}
+
+.profile-meds {
+  margin-top: 18px;
+}
+
+.profile-meds-title {
+  color: #2b3a55;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.profile-meds-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-meds-item {
+  background: #e6fbe6;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 1px 4px rgba(3,191,165,0.06);
+}
+
+.med-title {
+  color: #03bfa5;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.med-comp {
+  color: #2b3a55;
+  font-size: 0.98rem;
+}
+
+.med-side {
+  color: #b721ff;
+  font-size: 0.95rem;
+}
+
+.profile-empty {
+  color: #888;
+  font-style: italic;
+  margin-top: 10px;
+  text-align: center;
+}

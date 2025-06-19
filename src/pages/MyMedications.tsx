@@ -5,6 +5,7 @@ import paracetamol from "../assets/paracetamol.jpg";
 import SearchBar from "../components/SearchBar";
 import { getAllApi } from "../hooks/getAllApi";
 import Medicine from "../models/Medicine";
+import Navbar from "../components/Navbar";
 
 const MyMedications = () => {
   const getApiCall = getAllApi();
@@ -29,28 +30,31 @@ const MyMedications = () => {
   };
 
   return (
-    <div className="medication-container">
-      <SearchBar
-        value={searchValue}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setSearchValue(e.target.value)
-        }
-      />
-      <div className="card-container">
-        {medications && medications.length > 0
-          ? medications.map((medicine: Medicine) => (
-              <Card
-                avatar={paracetamol}
-                title={medicine.title}
-                composition={medicine.composition}
-                btnText="Премахни"
-                sideEffects={medicine.sideEffects}
-                onRemove={() => handleRemove(medicine.title)}
-              />
-            ))
-          : ""}
+    <>
+      <Navbar />
+      <div className="medication-container">
+        <SearchBar
+          value={searchValue}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSearchValue(e.target.value)
+          }
+        />
+        <div className="card-container">
+          {medications && medications.length > 0
+            ? medications.map((medicine: Medicine) => (
+                <Card
+                  avatar={paracetamol}
+                  title={medicine.title}
+                  composition={medicine.composition}
+                  btnText="Премахни"
+                  sideEffects={medicine.sideEffects}
+                  onRemove={() => handleRemove(medicine.title)}
+                />
+              ))
+            : ""}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

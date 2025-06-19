@@ -6,6 +6,7 @@ import MyMedications from "./pages/MyMedications";
 import Home from "./pages/Home";
 import Compare from "./pages/Compare";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./components/Profile";
 
 const App = () => {
   return (
@@ -26,6 +27,28 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <MyMedications />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile
+                  username="spacheliyska"
+                  medications={[
+                    {
+                      title: "Парацетамол",
+                      composition: "Парацетамол 500mg",
+                      sideEffects: ["Гадене", "Сънливост"],
+                    },
+                    {
+                      title: "Аспирин",
+                      composition: "Ацетилсалицилова киселина 100mg",
+                      sideEffects: ["Киселини", "Кървене"],
+                    },
+                  ]}
+                />
               </ProtectedRoute>
             }
           />

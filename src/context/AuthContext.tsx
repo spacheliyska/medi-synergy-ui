@@ -1,4 +1,11 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
@@ -9,9 +16,43 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const SESSION_KEY = "isAuthenticated";
+const SESSION_TIMEOUT = 2 * 60 * 1000; // 2 minutes in ms
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    const stored = localStorage.getItem(SESSION_KEY);
+    return stored === "true";
+  });
   const navigate = useNavigate();
+  const timeoutRef = useRef<number | null>(null);
+
+  const clearSession = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem("sessionTimestamp");
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      localStorage.setItem(SESSION_KEY, "true");
+      localStorage.setItem("sessionTimestamp", Date.now().toString());
+
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+      timeoutRef.current = window.setTimeout(() => {
+        clearSession();
+        alert("Сесията изтече. Моля, влезте отново.");
+      }, SESSION_TIMEOUT);
+    } else {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    }
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [isAuthenticated]);
 
   const login = async (username: string, password: string) => {
     try {
@@ -37,8 +78,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
-    navigate("/login");
+    clearSession();
   };
 
   return (
