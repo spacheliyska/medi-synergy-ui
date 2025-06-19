@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Login.css";
 import logo from "../assets/medisynergy.png";
@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     if (username === "admin" && password === "password") {
-      login();
+      login(username, password);
     } else {
       setError("Невалидно потребителско име или парола.");
     }
@@ -49,7 +49,11 @@ const Login = () => {
             <label className="password-label">Парола</label>
           </div>
           <div className="login-btn-wrapper">
-            <button className="login-btn" type="submit">
+            <button
+              className="login-btn"
+              type="submit"
+              onClick={() => login(username, password)}
+            >
               Вход
             </button>
           </div>

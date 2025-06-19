@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: () => void;
+  login: (username: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -13,9 +13,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  const login = () => {
-    setIsAuthenticated(true);
-    navigate("/");
+  const login = async (username: string, password: string) => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        navigate("/");
+      } else {
+        alert(data.error || "Login failed");
+      }
+    } catch (error) {
+      alert("Network error");
+    }
   };
 
   const logout = () => {
