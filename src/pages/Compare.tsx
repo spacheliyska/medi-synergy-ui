@@ -23,6 +23,7 @@ const Compare = () => {
   const med2 = data.find((m) => m.title === second);
 
   let result = "";
+  let resultClass = "";
   if (med1 && med2) {
     const comp1 = med1.composition
       .toLowerCase()
@@ -37,9 +38,13 @@ const Compare = () => {
     const intersection = comp1.filter((c) => comp2.includes(c));
     if (intersection.length > 0) {
       result =
-        "Несъвместими (имат общи съставки: " + intersection.join(", ") + ")";
+        "❌ Несъвместими (имат общи съставки: " +
+        intersection.join(", ") +
+        ")";
+      resultClass = "not-compatible";
     } else {
-      result = "Съвместими (нямат общи съставки)";
+      result = "✅ Съвместими (нямат общи съставки)";
+      resultClass = "compatible";
     }
   }
 
@@ -47,30 +52,57 @@ const Compare = () => {
     <>
       <Navbar />
       <div className="compare-container">
-        <h1>Сравни лекарства</h1>
+        <h1 className="compare-title">Сравни лекарства</h1>
         <div className="compare-selectors">
-          <select value={first} onChange={(e) => setFirst(e.target.value)}>
-            <option value="">Избери първо лекарство</option>
-            {data.map((m) => (
-              <option key={m.title} value={m.title}>
-                {m.title}
-              </option>
-            ))}
-          </select>
-          <span style={{ margin: "0 10px" }}>и</span>
-          <select value={second} onChange={(e) => setSecond(e.target.value)}>
-            <option value="">Избери второ лекарство</option>
-            {data.map((m) => (
-              <option key={m.title + "_2"} value={m.title}>
-                {m.title}
-              </option>
-            ))}
-          </select>
+          <div className="selector-group">
+            <label htmlFor="first-med">Първо лекарство</label>
+            <select
+              id="first-med"
+              value={first}
+              onChange={(e) => setFirst(e.target.value)}
+              className="compare-select"
+            >
+              <option value="">Избери първо лекарство</option>
+              {data.map((m) => (
+                <option key={m.title} value={m.title}>
+                  {m.title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <span className="compare-and">и</span>
+          <div className="selector-group">
+            <label htmlFor="second-med">Второ лекарство</label>
+            <select
+              id="second-med"
+              value={second}
+              onChange={(e) => setSecond(e.target.value)}
+              className="compare-select"
+            >
+              <option value="">Избери второ лекарство</option>
+              {data.map((m) => (
+                <option key={m.title + "_2"} value={m.title}>
+                  {m.title}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         {med1 && med2 && (
-          <div className="compare-result">
+          <div className={`compare-result ${resultClass}`}>
             <h3>Резултат:</h3>
             <p>{result}</p>
+            <div className="compare-details">
+              <div>
+                <strong>{med1.title}</strong>
+                <div className="compare-composition">{med1.composition}</div>
+              </div>
+              <span className="compare-vs">vs</span>
+              <div>
+                <strong>{med2.title}</strong>
+                <div className="compare-composition">{med2.composition}</div>
+              </div>
+            </div>
           </div>
         )}
       </div>

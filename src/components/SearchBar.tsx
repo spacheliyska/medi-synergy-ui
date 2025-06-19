@@ -7,13 +7,15 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => (
-  <input
-    type="text"
-    placeholder="Търси лекарства..."
-    value={value}
-    onChange={onChange}
-    className="search-bar"
-  />
+  <div className="search-bar-wrapper">
+    <input
+      type="text"
+      placeholder="🔍 Търси лекарства..."
+      value={value}
+      onChange={onChange}
+      className="search-bar"
+    />
+  </div>
 );
 
 export default SearchBar;

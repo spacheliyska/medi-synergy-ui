@@ -11,19 +11,22 @@ const MyMedications = () => {
   const getApiCall = getAllApi();
   const [data, setData] = useState<Medicine[]>([]);
   const [medications, setMedications] = useState<Medicine[]>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   useEffect(() => {
     async function getUseCases() {
       await getApiCall.performRequest().then((response) => {
-        console.log(response);
         setData(response.data);
-        setMedications(response.data); // <-- Add this line
+        setMedications(response.data);
       });
     }
     getUseCases();
   }, []);
 
-  const [searchValue, setSearchValue] = useState<string>("");
+  // Filter medications by title based on searchValue
+  const filteredMedications = medications.filter((medicine) =>
+    medicine.title.toLowerCase().includes(searchValue.trim().toLowerCase())
+  );
 
   const handleRemove = (title: string) => {
     setMedications((prev) => prev.filter((m) => m.title !== title));
@@ -40,9 +43,10 @@ const MyMedications = () => {
           }
         />
         <div className="card-container">
-          {medications && medications.length > 0
-            ? medications.map((medicine: Medicine) => (
+          {filteredMedications && filteredMedications.length > 0
+            ? filteredMedications.map((medicine: Medicine) => (
                 <Card
+                  key={medicine.title}
                   avatar={paracetamol}
                   title={medicine.title}
                   composition={medicine.composition}
@@ -51,7 +55,7 @@ const MyMedications = () => {
                   onRemove={() => handleRemove(medicine.title)}
                 />
               ))
-            : ""}
+            : "Няма намерени лекарства"}
         </div>
       </div>
     </>
