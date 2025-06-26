@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Compare from "./pages/Compare";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./components/Profile";
+import AdminPanel from "./pages/AdminPanel";
 
 const App = () => {
   return (
@@ -57,6 +58,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Compare />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPanel />
               </ProtectedRoute>
             }
           />

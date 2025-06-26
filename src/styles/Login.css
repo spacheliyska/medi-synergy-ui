@@ -160,3 +160,71 @@ button {
     text-decoration: none;
     margin-bottom: 1rem;
 }
+
+.login-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.login-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.reg-btn {
+  background: #03bfa5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reg-btn:hover {
+  background: #029e87;
+}
+
+.forgot-link {
+  color: #b721ff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: text-decoration 0.2s;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.reg-link-btn {
+  color: #03bfa5;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.reg-link-btn:hover,
+.reg-link-btn:focus {
+  color: #029e87;
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #c82333;
+  background: #ffeaea;
+  border: 1px solid #f5bcbc;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 22px; /* Add spacing below the error */
+  text-align: center;
+  font-size: 1rem;
+}

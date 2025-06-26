@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (username === "admin" && password === "password") {
+    if (username && password) {
       login(username, password);
     } else {
       setError("Невалидно потребителско име или парола.");
@@ -48,14 +48,20 @@ const Login = () => {
             />
             <label className="password-label">Парола</label>
           </div>
-          <div className="login-btn-wrapper">
-            <button
-              className="login-btn"
-              type="submit"
-              onClick={() => login(username, password)}
-            >
-              Вход
-            </button>
+          <div className="login-actions">
+            <div className="login-links">
+              <a className="reg-link-btn" href="/register">
+                Регистрация
+              </a>
+              <a className="forgot-link" href="/forgot-password">
+                Забравена парола?
+              </a>
+            </div>
+            <div className="login-btn-wrapper">
+              <button className="login-btn" type="submit" onClick={handleLogin}>
+                Вход
+              </button>
+            </div>
           </div>
         </form>
       </div>

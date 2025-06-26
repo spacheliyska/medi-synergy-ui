@@ -36,7 +36,6 @@ const Home = () => {
     return medicine.title.toLowerCase().includes(search);
   });
 
-  // Add medicine to myMedications if not already present
   const handleAdd = (medicine: Medicine) => {
     setMyMedications((prev) => {
       if (prev.some((m) => m.title === medicine.title)) {
@@ -45,6 +44,16 @@ const Home = () => {
       return [...prev, medicine];
     });
   };
+
+  const profiles = [
+    {
+      username: "spacheliyska",
+      display: "spacheliyska",
+      avatar: "/avatars/spacheliyska.png",
+    },
+    { username: "user2", display: "user2", avatar: "/avatars/user2.png" },
+    { username: "user3", display: "user3", avatar: "/avatars/user3.png" },
+  ];
 
   return (
     <>
@@ -78,6 +87,26 @@ const Home = () => {
           <ul>
             {myMedications.map((med, idx) => (
               <li key={med.title + idx}>{med.title}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="profiles">
+          <h3>Профили</h3>
+          <ul>
+            {profiles.map((profile) => (
+              <li key={profile.username} className="profile-list-item">
+                <a href={`/profile/${profile.username}`}>
+                  <img
+                    src={profile.avatar}
+                    alt={profile.display}
+                    className="profile-avatar"
+                    onError={(e) =>
+                      (e.currentTarget.src = "/avatars/default.png")
+                    }
+                  />
+                  Профил на {profile.display}
+                </a>
+              </li>
             ))}
           </ul>
         </div>
