@@ -143,34 +143,38 @@ const Home = () => {
               })
             : "Няма намерени лекарства"}
         </div>
-        <div className="my-medications-list">
-          <h3>Моите лекарства</h3>
-          <ul>
-            {myMedications.map((med, idx) => (
-              <li key={med.title + idx}>{med.title}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="profiles">
-          <h3>Профили</h3>
-          <ul>
-            {profiles.map((profile) => (
-              <li key={profile.username} className="profile-list-item">
-                <a href={`/profile/${profile.username}`}>
-                  <img
-                    src={profile.avatar}
-                    alt={profile.display}
-                    className="profile-avatar"
-                    onError={(e) =>
-                      (e.currentTarget.src = "/avatars/default.png")
-                    }
-                  />
-                  Профил на {profile.display}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {!query && (
+          <>
+            <div className="my-medications-list">
+              <h3>Моите лекарства</h3>
+              <ul>
+                {myMedications.map((med, idx) => (
+                  <li key={med.title + idx}>{med.title}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="profiles">
+              <h3>Профили</h3>
+              <ul>
+                {profiles.map((profile) => (
+                  <li key={profile.username} className="profile-list-item">
+                    <a href={`/profile/${profile.username}`}>
+                      <img
+                        src={profile.avatar}
+                        alt={profile.display}
+                        className="profile-avatar"
+                        onError={(e) =>
+                          (e.currentTarget.src = "/avatars/default.png")
+                        }
+                      />
+                      Профил на {profile.display}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
