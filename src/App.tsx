@@ -37,21 +37,7 @@ const App = () => {
             path="/profile"
             element={
               <ProtectedRoute>
-                <Profile
-                  username="spacheliyska"
-                  medications={[
-                    {
-                      title: "Парацетамол",
-                      composition: "Парацетамол 500mg",
-                      sideEffects: ["Гадене", "Сънливост"],
-                    },
-                    {
-                      title: "Аспирин",
-                      composition: "Ацетилсалицилова киселина 100mg",
-                      sideEffects: ["Киселини", "Кървене"],
-                    },
-                  ]}
-                />
+                <Profile username="spacheliyska" />
               </ProtectedRoute>
             }
           />

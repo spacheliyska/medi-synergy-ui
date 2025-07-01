@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Profile.css";
 import Navbar from "./Navbar";
 
@@ -10,10 +10,18 @@ interface Medicine {
 
 interface ProfileProps {
   username: string;
-  medications: Medicine[];
 }
 
-const Profile: React.FC<ProfileProps> = ({ username, medications }) => {
+const Profile: React.FC<ProfileProps> = ({ username }) => {
+  const [medications, setMedications] = useState<Medicine[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("myMedications");
+    if (stored) {
+      setMedications(JSON.parse(stored));
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
