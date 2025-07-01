@@ -107,7 +107,6 @@ const Home = () => {
     {
       username: "spacheliyska",
       display: "spacheliyska",
-      avatar: "/avatars/spacheliyska.png",
     },
     { username: "user2", display: "user2", avatar: "/avatars/user2.png" },
     { username: "user3", display: "user3", avatar: "/avatars/user3.png" },
@@ -163,9 +162,6 @@ const Home = () => {
                         src={profile.avatar}
                         alt={profile.display}
                         className="profile-avatar"
-                        onError={(e) =>
-                          (e.currentTarget.src = "/avatars/default.png")
-                        }
                       />
                       Профил на {profile.display}
                     </a>

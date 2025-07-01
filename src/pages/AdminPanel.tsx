@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, Navigate } from "react-router-dom";
 import "../styles/AdminPanel.css";
-import { useAuth } from "../context/AuthContext"; // Make sure this provides user info
-
+import { useAuth } from "../context/AuthContext";
+import avatar from "../assets/profile-avatar.jpg";
 interface UserProfile {
   username: string;
   display: string;
@@ -17,21 +17,21 @@ const mockProfiles: UserProfile[] = [
     display: "Силвия Пачелийска",
     email: "spacheliyska@example.com",
     role: "admin",
-    avatar: "/avatars/spacheliyska.png",
+    avatar: avatar,
   },
   {
     username: "user2",
     display: "Петър Иванов",
     email: "user2@example.com",
     role: "user",
-    avatar: "/avatars/user2.png",
+    avatar: avatar,
   },
   {
     username: "user3",
     display: "Мария Георгиева",
     email: "user3@example.com",
     role: "user",
-    avatar: "/avatars/user3.png",
+    avatar: avatar,
   },
 ];
 
@@ -104,7 +104,7 @@ const AdminPanel = () => {
                 <tr key={profile.username}>
                   <td>
                     <img
-                      src={profile.avatar || "/avatars/default.png"}
+                      src={profile.avatar}
                       alt={profile.display}
                       style={{
                         width: 36,
@@ -113,9 +113,6 @@ const AdminPanel = () => {
                         objectFit: "cover",
                         border: "2px solid #03bfa5",
                       }}
-                      onError={(e) =>
-                        (e.currentTarget.src = "/avatars/default.png")
-                      }
                     />
                   </td>
                   <td>{profile.username}</td>
