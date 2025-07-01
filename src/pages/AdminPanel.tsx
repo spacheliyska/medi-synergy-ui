@@ -3,6 +3,7 @@ import { Link, Outlet, Navigate } from "react-router-dom";
 import "../styles/AdminPanel.css";
 import { useAuth } from "../context/AuthContext";
 import avatar from "../assets/profile-avatar.jpg";
+
 interface UserProfile {
   username: string;
   display: string;
@@ -38,6 +39,7 @@ const mockProfiles: UserProfile[] = [
 const AdminPanel = () => {
   const { username } = useAuth();
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
+  const [editProfile, setEditProfile] = useState<UserProfile | null>(null);
 
   useEffect(() => {
     setProfiles(mockProfiles);
@@ -50,7 +52,26 @@ const AdminPanel = () => {
   };
 
   const handleEdit = (username: string) => {
-    alert(`Edit profile: ${username} (тук добавете форма за редакция)`);
+    const profile = profiles.find((p) => p.username === username);
+    if (profile) setEditProfile(profile);
+  };
+
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!editProfile) return;
+    const { name, value } = e.target;
+    setEditProfile({ ...editProfile, [name]: value });
+  };
+
+  const handleEditSave = () => {
+    if (!editProfile) return;
+    setProfiles((prev) =>
+      prev.map((p) => (p.username === editProfile.username ? editProfile : p))
+    );
+    setEditProfile(null);
+  };
+
+  const handleEditCancel = () => {
+    setEditProfile(null);
   };
 
   const handleAdd = () => {
@@ -66,10 +87,10 @@ const AdminPanel = () => {
       <nav className="admin-nav">
         <ul>
           <li>
-            <Link to="/admin">Табло</Link>
+            <Link to="/">MedicalSynergy</Link>
           </li>
           <li>
-            <Link to="/admin/profiles">Потребителски профили</Link>
+            <Link to="/admin">Потребителски профили</Link>
           </li>
         </ul>
       </nav>
@@ -116,22 +137,81 @@ const AdminPanel = () => {
                     />
                   </td>
                   <td>{profile.username}</td>
-                  <td>{profile.display}</td>
-                  <td>{profile.email}</td>
-                  <td>{profile.role}</td>
                   <td>
-                    <button
-                      className="admin-edit-btn"
-                      onClick={() => handleEdit(profile.username)}
-                    >
-                      Редактирай
-                    </button>
-                    <button
-                      className="admin-delete-btn"
-                      onClick={() => handleDelete(profile.username)}
-                    >
-                      Изтрий
-                    </button>
+                    {editProfile &&
+                    editProfile.username === profile.username ? (
+                      <input
+                        type="text"
+                        name="display"
+                        value={editProfile.display}
+                        onChange={handleEditChange}
+                        className="inline-edit-input"
+                      />
+                    ) : (
+                      profile.display
+                    )}
+                  </td>
+                  <td>
+                    {editProfile &&
+                    editProfile.username === profile.username ? (
+                      <input
+                        type="email"
+                        name="email"
+                        value={editProfile.email}
+                        onChange={handleEditChange}
+                        className="inline-edit-input"
+                      />
+                    ) : (
+                      profile.email
+                    )}
+                  </td>
+                  <td>
+                    {editProfile &&
+                    editProfile.username === profile.username ? (
+                      <input
+                        type="text"
+                        name="role"
+                        value={editProfile.role}
+                        onChange={handleEditChange}
+                        className="inline-edit-input"
+                      />
+                    ) : (
+                      profile.role
+                    )}
+                  </td>
+                  <td>
+                    {editProfile &&
+                    editProfile.username === profile.username ? (
+                      <>
+                        <button
+                          className="admin-edit-btn"
+                          onClick={handleEditSave}
+                        >
+                          Запази
+                        </button>
+                        <button
+                          className="admin-delete-btn"
+                          onClick={handleEditCancel}
+                        >
+                          Отказ
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="admin-edit-btn"
+                          onClick={() => handleEdit(profile.username)}
+                        >
+                          Редактирай
+                        </button>
+                        <button
+                          className="admin-delete-btn"
+                          onClick={() => handleDelete(profile.username)}
+                        >
+                          Изтрий
+                        </button>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))}
