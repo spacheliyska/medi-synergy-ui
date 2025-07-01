@@ -78,9 +78,25 @@ const Home = () => {
       if (prev.some((m) => m.title === medicine.title)) {
         return prev;
       }
-      return [...prev, medicine];
+      const updated = [...prev, medicine];
+      localStorage.setItem("myMedications", JSON.stringify(updated));
+      window.dispatchEvent(new Event("myMedicationsChanged"));
+      return updated;
     });
   };
+
+  useEffect(() => {
+    const stored = localStorage.getItem("myMedications");
+    if (stored) {
+      setMyMedications(JSON.parse(stored));
+    }
+    const sync = () => {
+      const updated = localStorage.getItem("myMedications");
+      if (updated) setMyMedications(JSON.parse(updated));
+    };
+    window.addEventListener("myMedicationsChanged", sync);
+    return () => window.removeEventListener("myMedicationsChanged", sync);
+  }, []);
 
   const profiles = [
     {
