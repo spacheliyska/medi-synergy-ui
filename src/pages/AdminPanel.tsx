@@ -57,8 +57,7 @@ const AdminPanel = () => {
     alert("Add new profile (тук добавете форма за добавяне)");
   };
 
-  console.log("AdminPanel rendered with username:", username);
-  if (username !== "admin") {
+  if (username !== "adminsimona") {
     return <Navigate to="/" replace />;
   }
 
