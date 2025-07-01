@@ -13,6 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     if (username && password) {
+      localStorage.setItem("username", username);
       login(username, password);
     } else {
       setError("Невалидно потребителско име или парола.");

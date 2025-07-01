@@ -16,7 +16,9 @@ const Navbar = () => {
           <a href="/compare">Сравни лекарства</a>
           <a href="/my-medications">Моите лекарства</a>
           <a href="/profile">Профил</a>
-          <a href="/admin">Профили</a>
+          {localStorage.getItem("username") === "admin" && (
+            <a href="/admin">Профили</a>
+          )}
         </ul>
       </div>
     </nav>
