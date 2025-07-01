@@ -10,9 +10,14 @@ import { getAllApi } from "../hooks/getAllApi";
 import Medicine from "../models/Medicine";
 import "../styles/Home.css";
 import Navbar from "../components/Navbar";
+import amoksiklav from "../assets/amoksiklav.jpg";
+import aksef from "../assets/aksef.jpg";
+import clarithromycin from "../assets/clarithromycin.webp";
+import diklofenak from "../assets/diklofenak.jpg";
+import paracetamol_kofein from "../assets/paracetamol-kofein.webp";
 
 const getAvatarSrc = (title: string) => {
-  const key = title.toLowerCase().replace(/\s+/g, "");
+  const key = title.toLowerCase();
   switch (key) {
     case "аулин":
       return aulin;
@@ -24,6 +29,16 @@ const getAvatarSrc = (title: string) => {
       return paracetamol;
     case "аспирин":
       return aspirin;
+    case "амоксицилин":
+      return amoksiklav;
+    case "цефуроксим":
+      return aksef;
+    case "кларитромицин":
+      return clarithromycin;
+    case "диклофенак":
+      return diklofenak;
+    case "парацетамол + кофеин":
+      return paracetamol_kofein;
     default:
       return paracetamol;
   }
