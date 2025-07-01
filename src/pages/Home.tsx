@@ -2,10 +2,32 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import Card from "../components/Card";
 import paracetamol from "../assets/paracetamol.jpg";
+import aulin from "../assets/aulin.jpg";
+import analgin from "../assets/analgin.png";
+import ibuprofen from "../assets/ibuprofen.jpg";
+import aspirin from "../assets/aspirin.webp";
 import { getAllApi } from "../hooks/getAllApi";
 import Medicine from "../models/Medicine";
 import "../styles/Home.css";
 import Navbar from "../components/Navbar";
+
+const getAvatarSrc = (title: string) => {
+  const key = title.toLowerCase().replace(/\s+/g, "");
+  switch (key) {
+    case "аулин":
+      return aulin;
+    case "аналгин":
+      return analgin;
+    case "ибупрофен":
+      return ibuprofen;
+    case "парацетамол":
+      return paracetamol;
+    case "аспирин":
+      return aspirin;
+    default:
+      return paracetamol;
+  }
+};
 
 const Home = () => {
   const [data, setData] = useState<Medicine[]>([]);
@@ -39,7 +61,7 @@ const Home = () => {
   const handleAdd = (medicine: Medicine) => {
     setMyMedications((prev) => {
       if (prev.some((m) => m.title === medicine.title)) {
-        return prev; // Already added
+        return prev;
       }
       return [...prev, medicine];
     });
@@ -67,21 +89,23 @@ const Home = () => {
         />
         <div className="card-container">
           {filteredData.length > 0
-            ? filteredData.map((medicine: Medicine, idx: number) => (
-                <Card
-                  key={medicine.title + idx}
-                  avatar={paracetamol}
-                  title={medicine.title}
-                  composition={medicine.composition}
-                  btnText="Добави"
-                  sideEffects={medicine.sideEffects}
-                  onRemove={undefined}
-                  onClick={() => handleAdd(medicine)}
-                />
-              ))
+            ? filteredData.map((medicine: Medicine, idx: number) => {
+                const avatarSrc = getAvatarSrc(medicine.title);
+                return (
+                  <Card
+                    key={medicine.title + idx}
+                    avatar={avatarSrc}
+                    title={medicine.title}
+                    composition={medicine.composition}
+                    btnText="Добави"
+                    sideEffects={medicine.sideEffects}
+                    onRemove={undefined}
+                    onClick={() => handleAdd(medicine)}
+                  />
+                );
+              })
             : "Няма намерени лекарства"}
         </div>
-        {/* Example: Show my medications below */}
         <div className="my-medications-list">
           <h3>Моите лекарства</h3>
           <ul>
