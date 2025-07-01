@@ -49,6 +49,7 @@ const Home = () => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [myMedications, setMyMedications] = useState<Medicine[]>([]);
+  const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     const getApiCall = getAllApi();
@@ -76,11 +77,15 @@ const Home = () => {
   const handleAdd = (medicine: Medicine) => {
     setMyMedications((prev) => {
       if (prev.some((m) => m.title === medicine.title)) {
+        setSuccess("Лекарството вече е добавено.");
+        setTimeout(() => setSuccess(null), 2000);
         return prev;
       }
       const updated = [...prev, medicine];
       localStorage.setItem("myMedications", JSON.stringify(updated));
       window.dispatchEvent(new Event("myMedicationsChanged"));
+      setSuccess("Успешно добавено!");
+      setTimeout(() => setSuccess(null), 2000);
       return updated;
     });
   };
@@ -112,6 +117,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="medication-container">
+        {success && <div className="success-strip">{success}</div>}
         <SearchBar
           value={query}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

@@ -12,3 +12,19 @@
     display: flex;
     flex-direction: row;
 }
+
+.success-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #03bfa5 0%, #b7e0c3 100%);
+  color: #155724;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 14px 24px;
+  margin-bottom: 22px;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px rgba(3,191,165,0.08);
+  border: 1px solid #b7e0c3;
+  letter-spacing: 0.5px;
+}

@@ -50,6 +50,7 @@ const MyMedications = () => {
   const [data, setData] = useState<Medicine[]>([]);
   const [medications, setMedications] = useState<Medicine[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     async function getUseCases() {
@@ -109,6 +110,8 @@ const MyMedications = () => {
       const updated = prev.filter((m) => m.title !== title);
       localStorage.setItem("myMedications", JSON.stringify(updated));
       window.dispatchEvent(new Event("myMedicationsChanged"));
+      setSuccess("Лекарството беше премахнато!");
+      setTimeout(() => setSuccess(null), 2000);
       return updated;
     });
   };
@@ -117,6 +120,7 @@ const MyMedications = () => {
     <>
       <Navbar />
       <div className="medication-container">
+        {success && <div className="success-strip">{success}</div>}
         <SearchBar
           value={searchValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
