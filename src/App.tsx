@@ -8,6 +8,7 @@ import Compare from "./pages/Compare";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./components/Profile";
 import AdminPanel from "./pages/AdminPanel";
+import Registration from "./pages/Registration";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/register" element={<Registration />} />
           <Route
             path="/profile"
             element={

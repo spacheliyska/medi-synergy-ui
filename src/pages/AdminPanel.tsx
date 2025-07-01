@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, Navigate } from "react-router-dom";
 import "../styles/AdminPanel.css";
+import { useAuth } from "../context/AuthContext"; // Make sure this provides user info
 
 interface UserProfile {
   username: string;
@@ -35,6 +36,7 @@ const mockProfiles: UserProfile[] = [
 ];
 
 const AdminPanel = () => {
+  const { username } = useAuth();
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
 
   useEffect(() => {
@@ -54,6 +56,11 @@ const AdminPanel = () => {
   const handleAdd = () => {
     alert("Add new profile (тук добавете форма за добавяне)");
   };
+
+  console.log("AdminPanel rendered with username:", username);
+  if (username !== "admin") {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="admin-panel">
